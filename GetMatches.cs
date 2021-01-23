@@ -23,7 +23,7 @@ namespace UvA.RegexFunctions
             using var reader = new StreamReader(req.Body);
             var body = await reader.ReadToEndAsync();
             var msg = JsonConvert.DeserializeObject<Message>(body);
-            return Regex.Matches(msg.Input, msg.Pattern).Select(m => m.Value);
+            return Regex.Matches(msg.Input, msg.Pattern).Select(m => m.Groups.Values.Last().Value);
         }
     }
 
